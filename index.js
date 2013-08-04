@@ -1,6 +1,0 @@
-(function()
-{
-
-	// Get the data.
-
-})();

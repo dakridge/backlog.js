@@ -1,0 +1,109 @@
+.content
+{
+	position: relative;
+
+	margin: 40px auto 0px auto;
+
+	width: 90%;
+
+	border: 1px solid #eeeeee;
+
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1
+{
+	position: relative;
+	margin-left: 10px;
+
+	font-size: 80px;
+	font-weight: 700;
+
+	color: #333333;
+
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	/*key=0Ar9b16u8gRNVdEtkWXo5bGhUZ3lTVnFldVhObTRIdWc*/
+}
+
+h2
+{
+	position: relative;
+	margin-left: 10px;
+	margin-bottom: 10px;
+
+	font-size: 20px;
+	color: #e74c3c;
+}
+
+h3
+{
+	position: relative;
+	margin-left: 10px;
+	margin-bottom: 10px;
+
+	font-size: 14px;
+	color: #bdc3c7;
+}
+
+#backlog-list
+{
+	position: relative;
+	margin-top: 20px;
+}
+
+#backlog-list .item
+{
+	position: relative;
+	overflow: hidden;
+
+	padding: 10px;
+}
+
+#backlog-list .item:hover{ background-color: #eeeeee; }
+
+#backlog-list .item .type
+{
+	position: relative;
+	float: left;
+
+	width: 200px;
+
+	font-size: 10px;
+
+	text-align: right;
+}
+
+#backlog-list .item .type div
+{
+	position: relative;
+	margin: 0px auto;
+
+	display: inline-block;
+
+	padding: 0px 10px;
+	line-height: 18px;
+
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+
+	font-weight: 600;
+
+	background-color: #404041;
+	color: #ffffff;
+}
+
+#backlog-list .item .type.buildnewfunction div{ background-color: #3498db; color: #ffffff; }
+#backlog-list .item .type.enhanceexistingfunction div{ background-color: #27ae60; color: #ffffff; }
+#backlog-list .item .type.issuefix div{ background-color: #9b59b6; color: #ffffff; }
+
+#backlog-list .item .description
+{
+	position: relative;
+	margin-left: 220px;
+
+	text-align: left;
+
+	font-size: 14px;
+	line-height: 18px;
+}
