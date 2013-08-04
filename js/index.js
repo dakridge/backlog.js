@@ -3,7 +3,7 @@
 	var p = getQueryParams(window.location.search);
 	var url = (p.hasOwnProperty("key")) ? "https://docs.google.com/spreadsheet/pub?key=" + p["key"] + "&single=true&gid=0&output=csv" : false;
 
-	var list = $("#backlog-list");
+	var list = d3.select("#backlog-list");
 
 	if( url )
 	{
@@ -16,24 +16,28 @@
 
 				var tp = d["Type of Request"].toLowerCase().replace(/\s+/g, '');
 
-				var item = $("<div/>", {"class": "item"});
-				var type = $("<div/>", {"class": "type " + tp}).append( $("<div>").text(d["Type of Request"]) );
-				var desc = $("<div/>", {"class": "description"}).text( d["Description"] );
+				var item = list
+					.append("div")
+					.attr("class", "item");
 
-				item.append( type )
-					.append( desc )
-					.appendTo( list );
+				item.append("div")
+					.attr("class", "type " + tp)
+					.append("div")
+					.text(d["Type of Request"]);
 
+				item.append("div")
+					.attr("class", "description")
+					.text(d["Description"]);
 			});
 		});
 	}
 	else
 	{
-		$("<h2>").text("Need query string with parameter 'key'")
-			.appendTo(list);
+		list.append("h2")
+			.text("Need query string with parameter 'key'");
 
-		$("<h3>").text("Example: ?key=0Ar9b16u8gRNVdEtkWXo5bGhUZ3lTVnFldVhObTRIdWc")
-			.appendTo(list);
+		list.append("h3")
+			.text("Example: ?key=0Ar9b16u8gRNVdEtkWXo5bGhUZ3lTVnFldVhObTRIdWc");
 	}
 
 })();
