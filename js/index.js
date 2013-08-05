@@ -11,24 +11,25 @@
 		{
 			console.log( res );
 
-			res.forEach(function(d, i)
-			{
+			// DATA JOIN
+			// Bind data to the list
+			var items = list.selectAll(".item")
+				.data( res );
 
-				var tp = d["Type of Request"].toLowerCase().replace(/\s+/g, '');
+			// ENTER
+			// Create new elements as needed.
+			var item = items.enter()
+				.append("div")
+				.attr("class", "item");
 
-				var item = list
-					.append("div")
-					.attr("class", "item");
+			item.append("div")
+				.attr("class", function(b){ return "type " +  b["Type of Request"].toLowerCase().replace(/\s+/g, '') })
+				.append("div")
+				.text(function(b){ return b["Type of Request"] });
 
-				item.append("div")
-					.attr("class", "type " + tp)
-					.append("div")
-					.text(d["Type of Request"]);
-
-				item.append("div")
-					.attr("class", "description")
-					.text(d["Description"]);
-			});
+			item.append("div")
+				.attr("class", "description")
+				.text(function(b){ return b["Description"] });
 		});
 	}
 	else
