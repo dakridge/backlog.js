@@ -45,10 +45,77 @@ h3
 	color: #bdc3c7;
 }
 
+#backlog-labels
+{
+	position: relative;
+	overflow: hidden;
+
+	background-color: #ecf0f1;
+
+	margin-top: 20px;
+	padding: 10px;
+}
+
+#backlog-labels .label
+{
+	position: relative;
+
+	/*background-color: #ecf0f1;*/
+
+	color: #34495e;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 20px;
+}
+
+#backlog-labels .label.type
+{
+	position: relative;
+	float: left;
+
+	width: 200px;
+
+	text-align: right;
+}
+
+#backlog-labels .label.uid
+{
+	position: relative;
+
+	float: left;
+	margin-left: 20px;
+
+	width: 50px;
+
+	text-align: center;
+}
+
+#backlog-labels .label.description
+{
+	position: relative;
+	margin-left: 290px;
+
+	margin-right: 70px;
+
+	text-align: left;
+}
+
+#backlog-labels .label.priority
+{
+	position: absolute;
+
+	top: 10px;
+	right: 10px;
+
+	width: 70px;
+
+	text-align: center;
+}
+
 #backlog-list
 {
 	position: relative;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #backlog-list .item
@@ -57,6 +124,8 @@ h3
 	overflow: hidden;
 
 	padding: 10px;
+
+	/*background-color: rgba(255, 0, 0, 0.05);*/
 }
 
 #backlog-list .item:hover{ background-color: #eeeeee; }
@@ -97,13 +166,63 @@ h3
 #backlog-list .item .type.enhanceexistingfunction div{ background-color: #27ae60; color: #ffffff; }
 #backlog-list .item .type.issuefix div{ background-color: #9b59b6; color: #ffffff; }
 
+#backlog-list .item .uid
+{
+	position: relative;
+
+	float: left;
+	margin-left: 20px;
+
+	width: 50px;
+
+	background-color: #eeeeee;
+
+	font-size: 14px;
+	line-height: 18px;
+
+	text-align: center;
+}
+
 #backlog-list .item .description
 {
 	position: relative;
-	margin-left: 220px;
+	margin-left: 290px;
 
 	text-align: left;
 
 	font-size: 14px;
 	line-height: 18px;
 }
+
+#backlog-list .item .priority
+{
+	position: absolute;
+
+	top: 10px;
+	right: 10px;
+
+	width: 70px;
+
+	text-align: center;
+}
+
+#backlog-list .item .priority div
+{
+	position: relative;
+	margin: 2px auto 0px auto;
+
+	display: block;
+
+	width: 10px;
+	height: 10px;
+
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+
+#backlog-list .item .priority.h div, #backlog-list .item .priority.m div, #backlog-list .item .priority.l div{ border: 2px solid #ffffff; }
+
+#backlog-list .item .priority.h div { background-color: #e74c3c; }
+#backlog-list .item .priority.m div { background-color: #f1c40f; }
+#backlog-list .item .priority.l div { background-color: #2ecc71; }
