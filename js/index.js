@@ -6,24 +6,31 @@
 	var url = (p.hasOwnProperty("key")) ? "https://docs.google.com/spreadsheet/pub?key=" + p["key"] + "&single=true&gid=0&output=csv" : false;
 
 	var priorities = {
-			"h"	: "High",
-			"m"	: "Medium",
-			"l"	: "Low"
+			"h"		: "High",
+			"m"		: "Medium",
+			"l"		: "Low",
+			"none"	: "No"
 		};
 
 	$("#backlog-labels").on("click", ".label", function(e)
 	{
 		var that = $(this);
+		var sort = that.attr("data-sort");
 
-		if( that.hasClass("type") )
+		var priorityOrder = ["h", "m", "l", "none"];
+
+		if( sort == "Priority" )
 		{
-			backlog.sortByKey("Type of Request");
-		}
-		if( that.hasClass("uid") )
-		{
-			backlog.sortByKey("ID");
+			backlog.sort(function(a, b)
+			{
+				var x = priorityOrder.indexOf( a[sort].toLowerCase() );
+				var y = priorityOrder.indexOf( b[sort].toLowerCase() );
+
+				return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+			});
 		}
 
+		backlog.sortByKey( sort );
 		$("#backlog-list").empty();
 		build(backlog);
 
@@ -62,7 +69,8 @@
 		// Create new elements as needed.
 		var item = items.enter()
 			.append("div")
-			.attr("class", "item");
+			.attr("class", "item")
+			.each( function(b){ if( b["Priority"] == undefined ){ b["Priority"] = "none" }});
 
 		item.append("div")
 			.attr("class", function(b){ return "type " +  b["Type of Request"].toLowerCase().replace(/\s+/g, '') })
@@ -78,8 +86,8 @@
 			.text(function(b){ return b["Description"] });
 
 		item.append("div")
-			.attr("title", function(b){ return ( b["Priority"] != undefined ) ? priorities[ b["Priority"].toLowerCase() ] + " Priority" : "No Priority" })
-			.attr("class", function(b){ return "priority " + (( b["Priority"] != undefined ) ? b["Priority"].toLowerCase() : "none") })
+			.attr("title", function(b){ return priorities[ b["Priority"].toLowerCase() ] + " Priority" })
+			.attr("class", function(b){ return "priority " + b["Priority"].toLowerCase() })
 			.append("div");
 	}
 
