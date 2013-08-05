@@ -5,6 +5,8 @@
 	var p = getQueryParams(window.location.search);
 	var url = (p.hasOwnProperty("key")) ? "https://docs.google.com/spreadsheet/pub?key=" + p["key"] + "&single=true&gid=0&output=csv" : false;
 
+	var priorityOrder = ["h", "m", "l", "none"];
+
 	var priorities = {
 			"h"		: "High",
 			"m"		: "Medium",
@@ -16,8 +18,6 @@
 	{
 		var that = $(this);
 		var sort = that.attr("data-sort");
-
-		var priorityOrder = ["h", "m", "l", "none"];
 
 		if( sort == "Priority" )
 		{
@@ -45,7 +45,6 @@
 			console.log( res );
 
 			backlog = res;
-
 			build(res);
 		});
 	}
@@ -70,12 +69,18 @@
 		var item = items.enter()
 			.append("div")
 			.attr("class", "item")
-			.each( function(b){ if( b["Priority"] == undefined ){ b["Priority"] = "none" }});
+			.each( function(b)
+			{
+				if( priorityOrder.indexOf( b["Priority"].toLowerCase() ) < 0 ){ b["Priority"] = "none"; }
+
+				b["ID"] = +b["ID"];
+
+			});
 
 		item.append("div")
-			.attr("class", function(b){ return "type " +  b["Type of Request"].toLowerCase().replace(/\s+/g, '') })
+			.attr("class", function(b){ return "type " +  b["Type of request"].toLowerCase().replace(/\s+/g, '') })
 			.append("div")
-			.text(function(b){ return b["Type of Request"] });
+			.text(function(b){ return b["Type of request"] });
 
 		item.append("div")
 			.attr("class", "uid")
