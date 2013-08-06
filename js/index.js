@@ -32,6 +32,8 @@
 		$("#backlog-list").toggleClass("showing");
 	});
 
+	$("#search-input").on("keyup", searchHandler);
+
 	var list = d3.select("#backlog-list");
 
 	if( url )
@@ -51,6 +53,14 @@
 
 		list.append("h3")
 			.text("Example: ?key=0Ar9b16u8gRNVdEtkWXo5bGhUZ3lTVnFldVhObTRIdWc");
+	}
+
+	function searchHandler(e)
+	{
+		var newlist = backlog.search( this.value );
+
+		$("#backlog-list").empty();
+		build( newlist );
 	}
 
 	function build(res)
@@ -73,7 +83,7 @@
 			.attr("class", function(b){ return "type " +  b.backlog["type of request"].toLowerCase().replace(/\s+/g, '') })
 			.append("div")
 			.style("background-color", function(b){ return colors[ b.backlog["type-class"] ] })
-			.text(function(b){ return b.backlog["type of request"] });
+			.text(function(b){ return b["Type of request"] });
 
 		item.append("div")
 			.attr("class", "uid")
@@ -81,7 +91,7 @@
 
 		item.append("div")
 			.attr("class", "description")
-			.text(function(b){ return b.backlog["description"] });
+			.text(function(b){ return b["Description"] });
 
 		var type = item.append("div")
 			.attr("title", function(b){ return priorities[ b.backlog["priority"].toLowerCase() ] + " Priority" })
@@ -135,7 +145,7 @@
 				}
 				else
 				{
-					d.backlog[ bl ] = d[b];
+					d.backlog[ bl ] = d[b].toLowerCase();
 				}
 
 				if( bl == "id" )
