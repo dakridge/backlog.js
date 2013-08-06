@@ -45,6 +45,21 @@ h3
 	color: #bdc3c7;
 }
 
+#viewhidden
+{
+	position: absolute;
+	cursor: pointer;
+
+	top: 10px;
+	right: 10px;
+
+	font-size: 2em;
+	color: #dddddd;
+}
+
+#viewhidden:hover { color: #bbbbbb; }
+#viewhidden.showing{ color: #2ecc71; }
+
 #backlog-labels
 {
 	position: relative;
@@ -128,6 +143,9 @@ h3
 	/*background-color: rgba(255, 0, 0, 0.05);*/
 }
 
+#backlog-list .item.isdone{ display: none; }
+#backlog-list.showing .item.isdone{ display: block; }
+
 #backlog-list .item:hover{ background-color: #eeeeee; }
 
 #backlog-list .item .type
@@ -162,9 +180,9 @@ h3
 	color: #ffffff;
 }
 
-#backlog-list .item .type.buildnewfunction div{ background-color: #3498db; color: #ffffff; }
-#backlog-list .item .type.enhanceexistingfunction div{ background-color: #27ae60; color: #ffffff; }
-#backlog-list .item .type.issuefix div{ background-color: #9b59b6; color: #ffffff; }
+/*#backlog-list .item .type.buildnewfunction div{ background-color: #3498db; color: #ffffff; }*/
+/*#backlog-list .item .type.enhanceexistingfunction div{ background-color: #27ae60; color: #ffffff; }*/
+/*#backlog-list .item .type.issuefix div{ background-color: #9b59b6; color: #ffffff; }*/
 
 #backlog-list .item .uid
 {
@@ -186,12 +204,18 @@ h3
 #backlog-list .item .description
 {
 	position: relative;
+
 	margin-left: 290px;
+	margin-right: 80px;
 
 	text-align: left;
 
 	font-size: 14px;
 	line-height: 18px;
+
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #backlog-list .item .priority
@@ -202,6 +226,7 @@ h3
 	right: 10px;
 
 	width: 70px;
+	height: 18px;
 
 	text-align: center;
 }
