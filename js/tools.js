@@ -17,7 +17,7 @@ Array.prototype.sortByKey = function(key)
 {
 	return this.sort(function(a, b)
 	{
-		var x = a[key]; var y = b[key];
+		var x = a["backlog"][key]; var y = b["backlog"][key];
 		return ((x < y) ? -1 : ((x > y) ? 1 : 0));
 	});
 };

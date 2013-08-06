@@ -19,18 +19,8 @@
 		var that = $(this);
 		var sort = that.attr("data-sort");
 
-		if( sort == "Priority" )
-		{
-			backlog.sort(function(a, b)
-			{
-				var x = priorityOrder.indexOf( a[sort].toLowerCase() );
-				var y = priorityOrder.indexOf( b[sort].toLowerCase() );
+		backlog.sortByKey( sort.toLowerCase() );
 
-				return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-			});
-		}
-
-		backlog.sortByKey( sort );
 		$("#backlog-list").empty();
 		build(backlog);
 	});
@@ -48,7 +38,7 @@
 	{
 		d3.csv(url, function(error, res)
 		{
-			console.log( res );
+			// console.log( res );
 
 			backlog = res;
 			build(res);
@@ -155,10 +145,12 @@
 				else if( bl == "priority" )
 				{
 					d.backlog[ bl ] = d.backlog[ bl ].toLowerCase();
+					d.backlog["priority-order"] = priorityOrder.indexOf( d.backlog[ bl ].toLowerCase() );
 
 					if( priorityOrder.indexOf( d.backlog[ bl ] ) < 0 )
 					{
 						d.backlog[ bl ] = "none";
+						d.backlog["priority-order"] = 3;
 					}
 				}
 			});
